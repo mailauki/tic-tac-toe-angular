@@ -23,6 +23,10 @@ html {
     protected-label-text-transform: uppercase,
     text-label-text-transform: uppercase,
   ));
+  @include mat.slide-toggle-overrides((
+    selected-icon-color: player-o-theme,
+    unselected-icon-color: player-x-theme,
+  ));
 }/* You can add global styles to this file, and also import other style files */
 
 .player-x-theme {

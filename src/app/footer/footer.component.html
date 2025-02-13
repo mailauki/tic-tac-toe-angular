@@ -1,15 +1,27 @@
 <mat-toolbar>
   <mat-toolbar-row>
     <span class="spacer"></span>
-      <button mat-icon-button aria-label="Reset board">
-        <mat-icon>refresh</mat-icon>
-      </button>
-			<span class="spacer"></span>
-      <button mat-stroked-button>1 Player</button>
-			<span class="spacer"></span>
-      <button mat-icon-button aria-label="Settings">
-        <mat-icon>settings</mat-icon>
-      </button>
-			<span class="spacer"></span>
+    <mat-button-toggle-group name="playerToken" aria-label="Choose player token" hideSingleSelectionIndicator value="O">
+      <mat-button-toggle value="X">
+        <mat-icon>close</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle value="O">
+        <mat-icon fontSet="material-icons-outlined">circle</mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+    <span class="spacer"></span>
+  </mat-toolbar-row>
+  <mat-toolbar-row>
+    <span class="spacer"></span>
+    <button mat-icon-button aria-label="Reset board">
+      <mat-icon>refresh</mat-icon>
+    </button>
+    <span class="spacer"></span>
+    <button mat-stroked-button>1 Player</button>
+    <span class="spacer"></span>
+    <button mat-icon-button aria-label="Settings">
+      <mat-icon>settings</mat-icon>
+    </button>
+    <span class="spacer"></span>
 	</mat-toolbar-row>
 </mat-toolbar>
