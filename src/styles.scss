@@ -17,6 +17,12 @@ html {
   @include mat.toolbar-overrides((
     title-text-size: --mat-sys-title-small,
   ));
+  @include mat.button-overrides((
+    filled-label-text-transform: uppercase,
+    outlined-label-text-transform: uppercase,
+    protected-label-text-transform: uppercase,
+    text-label-text-transform: uppercase,
+  ));
 }/* You can add global styles to this file, and also import other style files */
 
 .player-x-theme {
