@@ -1,0 +1,7 @@
+<div class="board">
+  <mat-grid-list cols="3">
+    @for (index of grid; track index) {
+      <mat-grid-tile id={{index}}>{{index}}</mat-grid-tile>
+    }
+  </mat-grid-list>
+</div>
