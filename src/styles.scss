@@ -14,6 +14,9 @@ html {
     typography: Roboto,
     density: 0,
   ));
+  @include mat.toolbar-overrides((
+    title-text-size: --mat-sys-title-small,
+  ));
 }/* You can add global styles to this file, and also import other style files */
 
 .player-x-theme {
