@@ -4,9 +4,10 @@
 @use '@angular/material' as mat;
 
 html {
+  color-scheme: light dark;
   @include mat.theme((
     color: (
-      theme-type: light,
+      // theme-type: light,
       primary: mat.$azure-palette,
       tertiary: mat.$blue-palette,
     ),
@@ -14,6 +15,17 @@ html {
     density: 0,
   ));
 }/* You can add global styles to this file, and also import other style files */
+
+.player-x-theme {
+  @include mat.theme((
+    color: mat.$azure-palette,
+  ));
+}
+.player-o-theme {
+  @include mat.theme((
+    color: mat.$cyan-palette,
+  ));
+}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
