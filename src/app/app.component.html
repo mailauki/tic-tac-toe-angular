@@ -1,10 +1,12 @@
 <main>
   <app-header />
-  <section>
+  <section class="content">
     <app-board
       [board]="boardTiles"
       (updatedBoard)="onBoardUpdate($event)"
       [token]="playerToken"
+      [count]="turnCount"
+      (incrementCountEvent)="onTurnUpdate($event)"
     />
   </section>
   <app-footer
@@ -12,5 +14,7 @@
     (updatedBoard)="onBoardUpdate($event)"
     [token]="playerToken"
     (updatedToken)="onTokenUpdate($event)"
+    [count]="turnCount"
+    (updatedCount)="onTurnUpdate($event)"
   />
 </main>

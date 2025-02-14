@@ -23,6 +23,7 @@ export class AppComponent {
   boardTiles = emptyBoard;
   onBoardUpdate(newBoard: TokenType[]) {
     this.boardTiles = newBoard;
+    this.updateTokenOnTurn();
   }
 
   playerToken: TokenType = "X";
@@ -30,4 +31,26 @@ export class AppComponent {
     this.playerToken = newToken;
   }
 
+  turnCount = 0;
+  onTurnUpdate(turn: number) {
+    this.turnCount = turn;
+  }
+
+  player: 1 | 2 = 1;
+  updateTokenOnTurn() {
+    this.player = this.turnCount % 2 === 0 ? 1 : 2;
+
+    if (this.player === 1 && this.playerToken === "X") {
+      this.playerToken = "O"
+    }
+    else if (this.player === 1 && this.playerToken === "O") {
+      this.playerToken = "X"
+    }
+    else if (this.player === 2 && this.playerToken === "X") {
+      this.playerToken = "O"
+    }
+    else if (this.player === 2 && this.playerToken === "O") {
+      this.playerToken = "X"
+    }
+  }
 }

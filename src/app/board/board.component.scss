@@ -6,11 +6,13 @@
   height: calc(100vh - 300px);
   max-height: 800px;
   margin: 0 auto;
-  overflow: hidden;
+  // overflow: hidden;
 }
 mat-grid-list {
-  background-color: var(--mat-sys-on-surface);
+  background-color: var(--mat-sys-outline);
+  // width: 600px;
 }
 mat-grid-tile {
-  background-color: var(--mat-sys-surface);
+  background-color: var(--mat-sys-surface-container-low);
+  font: var(--mat-sys-display-large);
 }

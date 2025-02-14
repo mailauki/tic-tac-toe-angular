@@ -17,13 +17,17 @@ import { emptyBoard, TokenType } from '../app.component';
 export class FooterComponent {
   @Input() board: TokenType[] = [];
   @Input() token: TokenType = "X";
+  @Input() count: number = 0;
 
   @Output() updatedBoard = new EventEmitter<TokenType[]>();
   @Output() updatedToken = new EventEmitter<TokenType>();
+  @Output() updatedCount = new EventEmitter<number>();
 
   resetTiles() {
     const newBoard = emptyBoard;
     this.updatedBoard.emit(newBoard);
+    this.count = 0;
+    this.updatedCount.emit(0);
   }
 
   onTokenChange(value: TokenType) {

@@ -16,6 +16,7 @@ html {
   ));
   @include mat.toolbar-overrides((
     title-text-size: --mat-sys-title-small,
+    // container-background-color: --mat-sys-surface-container,
   ));
   @include mat.button-overrides((
     filled-label-text-transform: uppercase,
@@ -26,6 +27,9 @@ html {
   @include mat.slide-toggle-overrides((
     selected-icon-color: player-o-theme,
     unselected-icon-color: player-x-theme,
+  ));
+  @include mat.card-overrides((
+    outlined-container-color: --mat-sys-surface-container,
   ));
 }/* You can add global styles to this file, and also import other style files */
 
@@ -41,4 +45,8 @@ html {
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: var(--mat-sys-surface);
+}

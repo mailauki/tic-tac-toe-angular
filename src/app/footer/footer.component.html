@@ -7,6 +7,7 @@
       hideSingleSelectionIndicator
       value={{token}}
       (change)="onTokenChange($event.value)"
+      [disabled]="count > 0 ? true : false"
     >
       <mat-button-toggle value="X">
         <mat-icon>close</mat-icon>
