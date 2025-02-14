@@ -1,6 +1,7 @@
 import { Component, Injectable, Input, Output, EventEmitter } from '@angular/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatRippleModule } from '@angular/material/core';
+import { TokenType } from '../app.component';
 
 @Injectable({
   providedIn: 'root',
@@ -12,17 +13,23 @@ import { MatRippleModule } from '@angular/material/core';
   styleUrl: './board.component.scss'
 })
 export class BoardComponent {
-  @Input() board: string[] = [];
+  @Input() board: TokenType[] = [];
+  @Input() token: TokenType = "X";
 
-  @Output() tiles = new EventEmitter<string[]>();
+  @Output() updatedBoard = new EventEmitter<TokenType[]>();
+  // @Output() updatedToken = new EventEmitter<TokenType>();
 
   updateTiles(id: number) {
     const newBoard = this.board.map((tile, index) => {
       if (index === id) {
-        return "X";
+        return this.token;
       }
       else return tile;
     });
-    this.tiles.emit(newBoard);
+    this.updatedBoard.emit(newBoard);
   }
+
+  // onTokenChange(value: TokenType) {
+  //   this.updatedToken.emit(value);
+  // }
 }

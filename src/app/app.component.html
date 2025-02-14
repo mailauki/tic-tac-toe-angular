@@ -1,7 +1,16 @@
 <main>
   <app-header />
   <section>
-    <app-board [board]="boardTiles" (tiles)="onBoardUpdate($event)" />
+    <app-board
+      [board]="boardTiles"
+      (updatedBoard)="onBoardUpdate($event)"
+      [token]="playerToken"
+    />
   </section>
-  <app-footer [board]="boardTiles" (tiles)="onBoardUpdate($event)" />
+  <app-footer
+    [board]="boardTiles"
+    (updatedBoard)="onBoardUpdate($event)"
+    [token]="playerToken"
+    (updatedToken)="onTokenUpdate($event)"
+  />
 </main>

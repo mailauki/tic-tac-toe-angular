@@ -3,6 +3,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { emptyBoard, TokenType } from '../app.component';
 
 @Injectable({
   providedIn: 'root',
@@ -14,16 +15,18 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
-  @Input() board: string[] = [];
+  @Input() board: TokenType[] = [];
+  @Input() token: TokenType = "X";
 
-  @Output() tiles = new EventEmitter<string[]>();
+  @Output() updatedBoard = new EventEmitter<TokenType[]>();
+  @Output() updatedToken = new EventEmitter<TokenType>();
 
   resetTiles() {
-    const newBoard = [
-      " ", " ", " ",
-      " ", " ", " ",
-      " ", " ", " ",
-    ];
-    this.tiles.emit(newBoard);
+    const newBoard = emptyBoard;
+    this.updatedBoard.emit(newBoard);
+  }
+
+  onTokenChange(value: TokenType) {
+    this.updatedToken.emit(value);
   }
 }
