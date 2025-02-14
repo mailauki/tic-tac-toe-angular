@@ -16,7 +16,7 @@ import { emptyBoard, TokenType } from '../app.component';
 })
 export class FooterComponent {
   @Input() board: TokenType[] = [];
-  @Input() token: TokenType = "X";
+  @Input() token: TokenType = "❌";
   @Input() count: number = 0;
 
   @Output() updatedBoard = new EventEmitter<TokenType[]>();

@@ -9,11 +9,19 @@
       (change)="onTokenChange($event.value)"
       [disabled]="count > 0 ? true : false"
     >
-      <mat-button-toggle value="X">
-        <mat-icon>close</mat-icon>
+      <mat-button-toggle
+        value="❌"
+        class="player-x-theme"
+      >
+        <span class="token">❌</span>
+        <!-- <mat-icon>close</mat-icon> -->
       </mat-button-toggle>
-      <mat-button-toggle value="O">
-        <mat-icon fontSet="material-icons-outlined">circle</mat-icon>
+      <mat-button-toggle
+        value="⭕️"
+        class="player-o-theme"
+      >
+        <span class="token">⭕️</span>
+        <!-- <mat-icon fontSet="material-icons-outlined">circle</mat-icon> -->
       </mat-button-toggle>
     </mat-button-toggle-group>
     <span class="spacer"></span>

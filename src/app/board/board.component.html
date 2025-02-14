@@ -1,15 +1,36 @@
-<mat-card class="board">
-  <mat-card-content>
-    <mat-grid-list cols="3" rowHeight="1:1">
-      @for (tile of board; track $index) {
-        <mat-grid-tile
-        class="mat-elevation-z4"
-        matRipple
-        [matRippleRadius]="0"
-        (click)="updateTiles($index)">
-          {{tile}}
-        </mat-grid-tile>
-      }
-    </mat-grid-list>
-  </mat-card-content>
-</mat-card>
+<!-- <div class="container">
+  <mat-card class="board">
+    <mat-card-content>
+      <mat-grid-list cols="3" rowHeight="1:1">
+        @for (tile of board; track $index) {
+          <mat-grid-tile
+          class="mat-elevation-z4"
+          matRipple
+          [matRippleRadius]="0"
+          (click)="updateTiles($index)">
+            {{tile}}
+          </mat-grid-tile>
+        }
+      </mat-grid-list>
+    </mat-card-content>
+  </mat-card>
+</div> -->
+<div class="container">
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <div class="board">
+        @for (tile of board; track $index) {
+          <div class="tile">
+            <button
+              [class]="tile === '⭕️' ? 'player-o-theme' : 'player-x-theme'"
+              mat-button
+              (click)="updateTiles($index)"
+            >
+              <span class="token">{{tile}}</span>
+            </button>
+          </div>
+        }
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

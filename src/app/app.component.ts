@@ -4,7 +4,8 @@ import { BoardComponent } from "./board/board.component";
 import { HeaderComponent } from "./header/header.component";
 import { FooterComponent } from "./footer/footer.component";
 
-export type TokenType = "X" | "O" | " "
+// export type TokenType = "X" | "O" | " "
+export type TokenType = "❌" | "⭕️" | " "
 export const emptyBoard: TokenType[] = [
   " ", " ", " ",
   " ", " ", " ",
@@ -26,7 +27,7 @@ export class AppComponent {
     this.updateTokenOnTurn();
   }
 
-  playerToken: TokenType = "X";
+  playerToken: TokenType = "❌";
   onTokenUpdate(newToken: TokenType) {
     this.playerToken = newToken;
   }
@@ -40,17 +41,17 @@ export class AppComponent {
   updateTokenOnTurn() {
     this.player = this.turnCount % 2 === 0 ? 1 : 2;
 
-    if (this.player === 1 && this.playerToken === "X") {
-      this.playerToken = "O"
+    if (this.player === 1 && this.playerToken === "❌") {
+      this.playerToken = "⭕️"
     }
-    else if (this.player === 1 && this.playerToken === "O") {
-      this.playerToken = "X"
+    else if (this.player === 1 && this.playerToken === "⭕️") {
+      this.playerToken = "❌"
     }
-    else if (this.player === 2 && this.playerToken === "X") {
-      this.playerToken = "O"
+    else if (this.player === 2 && this.playerToken === "❌") {
+      this.playerToken = "⭕️"
     }
-    else if (this.player === 2 && this.playerToken === "O") {
-      this.playerToken = "X"
+    else if (this.player === 2 && this.playerToken === "⭕️") {
+      this.playerToken = "❌"
     }
   }
 }
