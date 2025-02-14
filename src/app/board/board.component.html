@@ -1,16 +1,12 @@
 <div class="board">
-  <mat-grid-list cols="3" gutterSize="0.1rem">
-    @for (tile of grid; track tile) {
+  <mat-grid-list cols="3" gutterSize="0.1rem" rowHeight="1:1">
+    @for (tile of board; track $index) {
       <mat-grid-tile
-        id={{tile.index}}
-        class="mat-elevation-z4"
-        matRipple
-        [matRippleCentered]="false"
-        [matRippleUnbounded]="false"
-        [matRippleRadius]="0"
-        (click)="handleAddToken(tile.index, 'X')"
-      >
-        {{tile.value}}
+      class="mat-elevation-z4"
+      matRipple
+      [matRippleRadius]="0"
+      (click)="updateTiles($index)">
+        {{tile}}
       </mat-grid-tile>
     }
   </mat-grid-list>

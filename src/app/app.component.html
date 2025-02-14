@@ -1,7 +1,7 @@
 <main>
-  <app-header></app-header>
+  <app-header />
   <section>
-    <app-board></app-board>
+    <app-board [board]="boardTiles" (tiles)="onBoardUpdate($event)" />
   </section>
-  <app-footer></app-footer>
+  <app-footer [board]="boardTiles" (tiles)="onBoardUpdate($event)" />
 </main>

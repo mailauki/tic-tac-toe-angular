@@ -1,12 +1,10 @@
-import { Component } from '@angular/core';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatRippleModule} from '@angular/material/core';
+import { Component, Injectable, Input, Output, EventEmitter } from '@angular/core';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatRippleModule } from '@angular/material/core';
 
-interface Tile {
-  value: string,
-  index: number,
-}
-
+@Injectable({
+  providedIn: 'root',
+})
 @Component({
   selector: 'app-board',
   imports: [MatGridListModule, MatRippleModule],
@@ -14,15 +12,17 @@ interface Tile {
   styleUrl: './board.component.scss'
 })
 export class BoardComponent {
-  grid: Tile[] = Array.from(Array(9)).map((_, index) => Object.assign({ value: " ", index: index }))
+  @Input() board: string[] = [];
 
-  handleAddToken(index: number, newValue: string) {
-    console.log(index)
-    this.grid = this.grid.map((tile) => {
-      if (tile.index === index) {
-        return { ...tile, value: newValue };
+  @Output() tiles = new EventEmitter<string[]>();
+
+  updateTiles(id: number) {
+    const newBoard = this.board.map((tile, index) => {
+      if (index === id) {
+        return "X";
       }
-      return tile;
+      else return tile;
     });
+    this.tiles.emit(newBoard);
   }
 }

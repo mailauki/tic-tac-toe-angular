@@ -13,7 +13,11 @@
   </mat-toolbar-row>
   <mat-toolbar-row>
     <span class="spacer"></span>
-    <button mat-icon-button aria-label="Reset board">
+    <button
+      mat-icon-button
+      aria-label="Reset board"
+      (click)="resetTiles()"
+    >
       <mat-icon>refresh</mat-icon>
     </button>
     <span class="spacer"></span>
