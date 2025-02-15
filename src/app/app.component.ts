@@ -3,7 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { BoardComponent } from "./board/board.component";
 import { HeaderComponent } from "./header/header.component";
 import { FooterComponent } from "./footer/footer.component";
-import { emptyBoard, TokenType, winCombos } from './app.const';
+import { emptyBoard, emptyTally, TallyType, TokenType, winCombos } from './app.const';
 
 @Component({
   selector: 'app-root',
@@ -25,15 +25,17 @@ export class AppComponent {
   isWin: number[] | undefined = [];
   isFull = false;
   isOver = false;
-  // xWins = 0;
-  // oWins = 0;
-  // draws = 0;
+  xWins = 0;
+  oWins = 0;
+  draws = 0;
+  winsTally: TallyType = emptyTally;
 
   onBoardUpdate(newBoard: TokenType[]) {
     this.boardTiles = newBoard;
     this.updateTokenOnTurn();
     this.updateTokenBoards();
     this.findWinByCombo();
+    this.tallyWins();
   }
 
   onTokenUpdate(newToken: TokenType) {
@@ -71,5 +73,12 @@ export class AppComponent {
     this.isWin = this.isXWin || this.isOWin;
     this.isFull = this.turnCount === 8;
     this.isOver = Boolean(this.isWin) || this.isFull;
+  }
+  tallyWins() {
+    if (this.isXWin && this.isOver) this.xWins++;
+    if (this.isOWin && this.isOver) this.oWins++;
+    if (!this.isXWin && !this.isOWin && this.isOver) this.draws++;
+
+    this.winsTally = { x: this.xWins, o: this.oWins, draw: this.draws };
   }
 }

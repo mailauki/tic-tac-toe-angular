@@ -1,5 +1,15 @@
 // export type TokenType = "X" | "O" | " "
 export type TokenType = "❌" | "⭕️" | " "
+export interface TallyType {
+  x: number,
+  o: number,
+  draw: number,
+}
+export const emptyTally = {
+  x: 0,
+  o: 0,
+  draw: 0,
+}
 export const emptyBoard: TokenType[] = [
   " ", " ", " ",
   " ", " ", " ",

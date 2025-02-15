@@ -4,4 +4,22 @@
 			<span class="title">Tic-Tac-Toe</span>
 			<span class="spacer"></span>
 	</mat-toolbar-row>
+  <mat-toolbar-row>
+    <span class="spacer"></span>
+    <div class="tally player-x-theme">
+      <span class="icon token">❌</span>
+      <span>{{tally.x}} wins</span>
+    </div>
+    <span class="spacer"></span>
+    <div class="tally player-o-theme">
+      <span class="icon token">⭕️</span>
+      <span>{{tally.o}} wins</span>
+    </div>
+    <span class="spacer"></span>
+    <div class="tally draws">
+      <span class="icon"><mat-icon>balance</mat-icon></span>
+      <span>{{tally.draw}} draws</span>
+    </div>
+    <span class="spacer"></span>
+  </mat-toolbar-row>
 </mat-toolbar>
