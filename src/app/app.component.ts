@@ -3,14 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { BoardComponent } from "./board/board.component";
 import { HeaderComponent } from "./header/header.component";
 import { FooterComponent } from "./footer/footer.component";
-
-// export type TokenType = "X" | "O" | " "
-export type TokenType = "❌" | "⭕️" | " "
-export const emptyBoard: TokenType[] = [
-  " ", " ", " ",
-  " ", " ", " ",
-  " ", " ", " ",
-];
+import { emptyBoard, TokenType, winCombos } from './app.const';
 
 @Component({
   selector: 'app-root',
@@ -22,22 +15,33 @@ export class AppComponent {
   title = 'tic-tac-toe-angular';
 
   boardTiles = emptyBoard;
+  playerToken: TokenType = "❌";
+  turnCount = 0;
+  player: 1 | 2 = 1;
+  xBoard: number[] = [];
+  oBoard: number[] = [];
+  isXWin: number[] | undefined = undefined;
+  isOWin: number[] | undefined = undefined;
+  isWin: number[] | undefined = [];
+  isFull = false;
+  isOver = false;
+  // xWins = 0;
+  // oWins = 0;
+  // draws = 0;
+
   onBoardUpdate(newBoard: TokenType[]) {
     this.boardTiles = newBoard;
     this.updateTokenOnTurn();
+    this.updateTokenBoards();
+    this.findWinByCombo();
   }
 
-  playerToken: TokenType = "❌";
   onTokenUpdate(newToken: TokenType) {
     this.playerToken = newToken;
   }
-
-  turnCount = 0;
   onTurnUpdate(turn: number) {
     this.turnCount = turn;
   }
-
-  player: 1 | 2 = 1;
   updateTokenOnTurn() {
     this.player = this.turnCount % 2 === 0 ? 1 : 2;
 
@@ -53,5 +57,19 @@ export class AppComponent {
     else if (this.player === 2 && this.playerToken === "⭕️") {
       this.playerToken = "❌"
     }
+  }
+
+  updateTokenBoards() {
+    this.xBoard = this.boardTiles.map((tile, index) => tile === "❌" ? index : null).filter((index) => index !== null)
+    this.oBoard = this.boardTiles.map((tile, index) => tile === "⭕️" ? index : null).filter((index) => index !== null)
+  }
+
+  findWinByCombo() {
+    this.isXWin = winCombos.find((combo) => combo.map((index) => this.xBoard.includes(index)).every((item) => item === true));
+    this.isOWin = winCombos.find((combo) => combo.map((index) => this.oBoard.includes(index)).every((item) => item === true));
+
+    this.isWin = this.isXWin || this.isOWin;
+    this.isFull = this.turnCount === 8;
+    this.isOver = Boolean(this.isWin) || this.isFull;
   }
 }
