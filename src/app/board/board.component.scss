@@ -1,20 +1,11 @@
-.container {
-  max-width: 600px;
-  min-width: 300px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  -webkit-font-smoothing: antialiased;
-}
 .board {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(80px, 1fr));
   grid-gap: 2px;
   background-color: var(--mat-sys-outline-variant);
   overflow: hidden;
 }
-.tile, .tile button {
+.board, .tile, .tile button {
   aspect-ratio: 1 / 1;
 }
 .tile {
@@ -29,13 +20,6 @@
   width: 95%;
   height: 95%;
   border-radius: 12px;
-  font: var(--mat-sys-display-large);
-}
-mat-grid-list {
-  background-color: var(--mat-sys-outline);
-}
-mat-grid-tile {
-  background-color: var(--mat-sys-surface-container-low);
   font: var(--mat-sys-display-large);
 }
 @media (max-width: 600px) {
