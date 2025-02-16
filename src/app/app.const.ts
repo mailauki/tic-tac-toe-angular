@@ -1,10 +1,13 @@
-// export type TokenType = "X" | "O" | " "
 export type TokenType = "❌" | "⭕️" | " "
 export interface TallyType {
   x: number,
   o: number,
   draw: number,
 }
+export interface DialogData {
+  resetWins: () => void,
+}
+
 export const emptyTally = {
   x: 0,
   o: 0,

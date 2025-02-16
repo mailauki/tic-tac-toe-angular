@@ -2,7 +2,7 @@ import { Component, Injectable, Input, Output, EventEmitter } from '@angular/cor
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatRippleModule } from '@angular/material/core';
 import { TokenType } from '../app.const';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 
 @Injectable({
@@ -19,6 +19,7 @@ export class BoardComponent {
   @Input() token: TokenType = "❌";
   @Input() count: number = 0;
   @Input() over: boolean = false;
+  @Input() win?: number[] = [];
 
   @Output() updatedBoard = new EventEmitter<TokenType[]>();
   @Output() incrementCountEvent = new EventEmitter<number>();

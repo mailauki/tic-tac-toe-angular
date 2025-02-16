@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>Settings</h2>
+<mat-dialog-content>
+    <button
+      mat-flat-button
+      mat-dialog-close
+      style="width: 100%;"
+      (click)="reset()"
+    >
+      Reset Wins
+    </button>
+    <mat-divider class="divider" />
+    <mat-chip-listbox multiple class="mat-mdc-chip-set-stacked" aria-label="Number of players">
+        <mat-chip-option>Multiplayer</mat-chip-option>
+        <mat-chip-option selected>Opponent First</mat-chip-option>
+    </mat-chip-listbox>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

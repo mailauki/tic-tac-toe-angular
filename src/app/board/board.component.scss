@@ -22,6 +22,9 @@
   border-radius: 12px;
   font: var(--mat-sys-display-large);
 }
+.tonal {
+  background-color: var(--mat-sys-secondary-fixed);
+}
 @media (max-width: 600px) {
   .container {
     margin-left: 0;

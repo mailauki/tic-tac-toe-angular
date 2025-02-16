@@ -20,14 +20,11 @@ export class AppComponent {
   player: 1 | 2 = 1;
   xBoard: number[] = [];
   oBoard: number[] = [];
-  isXWin: number[] | undefined = undefined;
-  isOWin: number[] | undefined = undefined;
-  isWin: number[] | undefined = [];
+  isXWin?: number[] = [];
+  isOWin?: number[] = [];
+  isWin?: number[] = [];
   isFull = false;
   isOver = false;
-  xWins = 0;
-  oWins = 0;
-  draws = 0;
   winsTally: TallyType = emptyTally;
 
   onBoardUpdate(newBoard: TokenType[]) {
@@ -41,9 +38,15 @@ export class AppComponent {
   onTokenUpdate(newToken: TokenType) {
     this.playerToken = newToken;
   }
+
   onTurnUpdate(turn: number) {
     this.turnCount = turn;
   }
+
+  onTallyUpdate(newTally: TallyType) {
+    this.winsTally = newTally;
+  };
+
   updateTokenOnTurn() {
     this.player = this.turnCount % 2 === 0 ? 1 : 2;
 
@@ -74,11 +77,16 @@ export class AppComponent {
     this.isFull = this.turnCount === 8;
     this.isOver = Boolean(this.isWin) || this.isFull;
   }
-  tallyWins() {
-    if (this.isXWin && this.isOver) this.xWins++;
-    if (this.isOWin && this.isOver) this.oWins++;
-    if (!this.isXWin && !this.isOWin && this.isOver) this.draws++;
 
-    this.winsTally = { x: this.xWins, o: this.oWins, draw: this.draws };
+  tallyWins() {
+    let xWins = 0;
+    let oWins = 0;
+    let draws = 0;
+
+    if (this.isXWin && this.isOver) xWins++;
+    if (this.isOWin && this.isOver) oWins++;
+    if (!this.isXWin && !this.isOWin && this.isOver) draws++;
+
+    this.winsTally = { x: xWins, o: oWins, draw: draws };
   }
 }

@@ -8,6 +8,7 @@
       [count]="turnCount"
       (incrementCountEvent)="onTurnUpdate($event)"
       [over]="isOver"
+      [win]="isWin"
     />
   </section>
   <app-footer
@@ -17,5 +18,7 @@
     (updatedToken)="onTokenUpdate($event)"
     [count]="turnCount"
     (updatedCount)="onTurnUpdate($event)"
+    [tally]="winsTally"
+    (updatedTally)="onTallyUpdate($event)"
   />
 </main>

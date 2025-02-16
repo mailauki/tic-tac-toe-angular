@@ -9,6 +9,7 @@
               mat-button
               (click)="updateTiles($index)"
               [disabled]="over ? true : false"
+              [class.tonal]="win?.includes($index)"
             >
               <span class="token">{{tile}}</span>
             </button>
@@ -18,10 +19,3 @@
     </mat-card-content>
   </mat-card>
 </div>
-<!-- <div class="body">
-  <div class="resizable">
-    <div class="square">
-      square
-    </div>
-  </div>
-</div> -->
