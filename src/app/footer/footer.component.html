@@ -27,15 +27,21 @@
   <mat-toolbar-row class="container">
     <button
       mat-icon-button
+      matTooltip="Reset board"
       aria-label="Reset board"
-      (click)="resetTiles()"
+      (click)="resetBoard()"
     >
       <mat-icon>refresh</mat-icon>
     </button>
     <span class="spacer"></span>
-    <button mat-stroked-button>1 Player</button>
+    <button mat-stroked-button>{{multiplayer ? "2 Player" : "1 Player"}}</button>
     <span class="spacer"></span>
-    <button mat-icon-button (click)="openDialog()" aria-label="Settings">
+    <button
+      mat-icon-button
+      matTooltip="Settings"
+      aria-label="Settings"
+      (click)="openDialog()"
+    >
       <mat-icon>settings</mat-icon>
     </button>
 	</mat-toolbar-row>

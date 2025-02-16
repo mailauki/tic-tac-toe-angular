@@ -1,5 +1,7 @@
 <div class="container">
   <mat-card appearance="outlined">
+    <mat-card-header>
+    </mat-card-header>
     <mat-card-content>
       <div class="board">
         @for (tile of board; track $index) {
@@ -8,7 +10,7 @@
               [class]="tile === '⭕️' ? 'player-o-theme' : 'player-x-theme'"
               mat-button
               (click)="updateTiles($index)"
-              [disabled]="over ? true : false"
+              [disabled]="win || count === 9"
               [class.tonal]="win?.includes($index)"
             >
               <span class="token">{{tile}}</span>

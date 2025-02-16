@@ -7,7 +7,6 @@
       [token]="playerToken"
       [count]="turnCount"
       (incrementCountEvent)="onTurnUpdate($event)"
-      [over]="isOver"
       [win]="isWin"
     />
   </section>
@@ -20,5 +19,7 @@
     (updatedCount)="onTurnUpdate($event)"
     [tally]="winsTally"
     (updatedTally)="onTallyUpdate($event)"
+    [multiplayer]="multiPlayer"
+    (updatedPlayers)="onPlayersUpdate($event)"
   />
 </main>

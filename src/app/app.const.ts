@@ -6,6 +6,8 @@ export interface TallyType {
 }
 export interface DialogData {
   resetWins: () => void,
+  playersChange: () => void,
+  isMultiplayer: boolean,
 }
 
 export const emptyTally = {

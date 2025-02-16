@@ -10,7 +10,7 @@
     </button>
     <mat-divider class="divider" />
     <mat-chip-listbox multiple class="mat-mdc-chip-set-stacked" aria-label="Number of players">
-        <mat-chip-option>Multiplayer</mat-chip-option>
+        <mat-chip-option [selected]="this.data.isMultiplayer" (click)="multiplayer()">Enable Multiplayer</mat-chip-option>
         <mat-chip-option selected>Opponent First</mat-chip-option>
     </mat-chip-listbox>
 </mat-dialog-content>

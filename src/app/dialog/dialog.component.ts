@@ -18,4 +18,8 @@ export class DialogComponent {
   reset() {
     this.data.resetWins();
   }
+  multiplayer() {
+    this.data.playersChange();
+    console.log(this.data.isMultiplayer)
+  }
 }
