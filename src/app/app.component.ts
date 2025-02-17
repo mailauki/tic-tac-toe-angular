@@ -15,8 +15,10 @@ export class AppComponent {
   title = 'tic-tac-toe-angular';
   boardTiles = emptyBoard;
   playerToken: TokenType = "❌";
+  opponentToken: TokenType = "⭕️";
   turnCount = 0;
-  player: 1 | 2 = 1;
+  currentPlayer: 1 | 2 = 1;
+  currentToken: TokenType = this.playerToken;
   multiPlayer: boolean = false;
   xBoard: number[] = [];
   oBoard: number[] = [];
@@ -34,17 +36,26 @@ export class AppComponent {
   // also updates win combo and tally
   onBoardUpdate(newBoard: TokenType[]) {
     this.boardTiles = newBoard;
-    this.updateTokenOnTurn();
+
+    if (!this.multiPlayer && this.turnCount > 0 && !this.isOver) this.computerOpponentMove();
+    else this.alternateTurn();
+
     this.updateWinBoards();
     this.findWinByCombo();
+
+    this.isWin = this.isXWin || this.isOWin;
+    this.isFull = this.turnCount === 9;
+    this.isOver = Boolean(this.isWin) || this.isFull;
+
     if (this.isOver && this.boardTiles !== emptyBoard) {
       this.tallyWins();
     }
   }
 
   // handles updating the initial token on toggle choice
+  // also updates based on turn
   onTokenUpdate(newToken: TokenType) {
-    this.playerToken = newToken;
+    this.currentToken = newToken;
   }
 
   // handles updating the turn count
@@ -67,21 +78,12 @@ export class AppComponent {
 
   // handles token toggle from turn change based on initial token choice
   updateTokenOnTurn() {
-    this.player = this.turnCount % 2 === 0 ? 1 : 2;
+    this.currentToken = this.currentPlayer === 1 ? this.playerToken : this.opponentToken;
+  }
 
-    const playerX = this.player === 1 && this.playerToken === "❌";
-    const opponentX = this.player === 2 && this.playerToken === "❌";
-    const playerO = this.player === 1 && this.playerToken === "⭕️";
-    const opponentO = this.player === 2 && this.playerToken === "⭕️";
-
-    if (this.turnCount > 0) {
-      if (playerX || opponentX) {
-        this.playerToken = "⭕️";
-      }
-      else if (playerO || opponentO) {
-        this.playerToken = "❌";
-      }
-    }
+  alternateTurn() {
+    this.currentPlayer = this.turnCount % 2 === 0 ? 1 : 2;
+    this.currentToken = this.currentPlayer === 1 ? this.playerToken : this.opponentToken;
   }
 
   // handles win combo based on token for each
@@ -95,10 +97,6 @@ export class AppComponent {
   findWinByCombo() {
     this.isXWin = winCombos.find((combo) => combo.map((index) => this.xBoard.includes(index)).every((item) => item === true));
     this.isOWin = winCombos.find((combo) => combo.map((index) => this.oBoard.includes(index)).every((item) => item === true));
-
-    this.isWin = this.isXWin || this.isOWin;
-    this.isFull = this.turnCount === 9;
-    this.isOver = Boolean(this.isWin) || this.isFull;
   }
 
   // handles updating the tally counters
@@ -108,5 +106,42 @@ export class AppComponent {
     if (!this.isXWin && !this.isOWin && this.isFull) this.draws++;
 
     this.winsTally = { x: this.xWins, o: this.oWins, draw: this.draws };
+  }
+
+  computerOpponentMove() {
+    const remainingEmptyTiles = this.boardTiles.flatMap((tile, index) => {
+      if (tile !== "❌" && tile !== "⭕️") return index;
+      else return [];
+    });
+
+    const randomMove = remainingEmptyTiles[Math.floor(Math.random()*remainingEmptyTiles.length)];
+
+    const hasConsecutive = winCombos.flatMap((combo) => {
+      const isXConsecutive = combo.map((index) => this.xBoard.includes(index)).filter((isX) => isX).length === 2;
+      const isOConsecutive = combo.map((index) => this.oBoard.includes(index)).filter((isO) => isO).length === 2;
+
+      if (isXConsecutive === true || isOConsecutive === true) return combo;
+      else return [];
+    })
+
+    const consecutiveMove = hasConsecutive.flatMap((index) => {
+      if(remainingEmptyTiles.includes(index)) return index;
+      else return [];
+    });
+
+    const nextMove = consecutiveMove.length > 0 ? consecutiveMove[0] : randomMove;
+
+    // place token and update board for computer opponent
+    this.boardTiles = this.boardTiles.map((tile, index) => {
+      // this.turnCount = this.turnCount + 1;
+      if (index === nextMove) return this.opponentToken;
+      else return tile;
+    });
+
+    // updates turn count
+    this.turnCount++;
+
+    // updates token toggle based on turn
+    this.alternateTurn();
   }
 }

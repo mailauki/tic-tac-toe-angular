@@ -39,7 +39,8 @@ html, body { height: 100%; }
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: var(--mat-sys-surface-container);
+  // background-color: var(--mat-sys-surface-container);
+  background-color: var(--mat-sys-surface);
 }
 
 .container {
@@ -56,10 +57,22 @@ body {
   background-color: var(--mat-sys-primary);
   background-clip: text;
   color: transparent;
-  // padding: 0.25rem;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 button:disabled .token {
   background-color: var(--mat-sys-secondary);
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+@media (min-width: 600px) and (max-width: 800px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }

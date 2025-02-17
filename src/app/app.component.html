@@ -4,7 +4,7 @@
     <app-board
       [board]="boardTiles"
       (updatedBoard)="onBoardUpdate($event)"
-      [token]="playerToken"
+      [token]="currentToken"
       [count]="turnCount"
       (incrementCountEvent)="onTurnUpdate($event)"
       [win]="isWin"
@@ -13,7 +13,7 @@
   <app-footer
     [board]="boardTiles"
     (updatedBoard)="onBoardUpdate($event)"
-    [token]="playerToken"
+    [token]="currentToken"
     (updatedToken)="onTokenUpdate($event)"
     [count]="turnCount"
     (updatedCount)="onTurnUpdate($event)"

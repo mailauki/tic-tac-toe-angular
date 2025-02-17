@@ -21,6 +21,7 @@ import { emptyBoard, emptyTally, TallyType, TokenType } from '../app.const';
 export class FooterComponent {
   @Input() board: TokenType[] = [];
   @Input() token: TokenType = "❌";
+  // @Input() player: 1 | 2 = 1;
   @Input() count: number = 0;
   @Input() tally: TallyType = emptyTally;
   @Input() multiplayer: boolean = false;
@@ -36,6 +37,8 @@ export class FooterComponent {
     this.updatedBoard.emit(newBoard);
 
     this.resetCount();
+
+    this.updatedToken.emit("❌");
   }
 
   resetCount() {
